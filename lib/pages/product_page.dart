@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
@@ -45,8 +47,13 @@ class _ProductPageState extends State<ProductPage> {
                           children: [
                             ProductPageCounter(
                               amountOfProducts: amount,
-                              increment: () => setState(() => amount++),
-                              decrement: () => setState(() => amount--),
+                              increment: () => setState(
+                                () => amount++,
+                              ),
+                              decrement: () => setState(() {
+                                amount--;
+                                amount = max(amount - 1, 0);
+                              }),
                             ),
                             const Spacer(),
                             Text('\$ $price'),
