@@ -81,7 +81,7 @@ class _ProductPageState extends State<ProductPage> {
                           onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => CartPage(),
+                                builder: (context) => const CartPage(),
                               )),
                           child: const Padding(
                             padding: EdgeInsets.symmetric(
