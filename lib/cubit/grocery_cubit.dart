@@ -42,8 +42,6 @@ class GroceryCubit extends Cubit<GroceryState> {
     // cartProducts.remove(product);
     cartProducts.removeWhere((Product item) => product == item);
 
-    print(cartProducts);
-    print(amount);
     totalPrice = totalPrice - (product.price * amount);
 
     emit(GroceryInitial(cartProducts, state.allProducts, totalPrice));
