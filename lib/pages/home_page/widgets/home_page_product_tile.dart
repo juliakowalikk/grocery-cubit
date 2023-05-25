@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_cubit/pages/product_page.dart';
+import 'package:grocery_cubit/pages/product_page/product_page.dart';
 import 'package:grocery_cubit/pages/style/app_typography.dart';
 import 'package:grocery_cubit/product.dart';
 

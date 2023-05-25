@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
-import 'package:grocery_cubit/pages/tiles/home_page_product_tile.dart';
+import 'package:grocery_cubit/pages/home_page/widgets/home_page_product_tile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

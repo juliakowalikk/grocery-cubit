@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
-class ProductPageCounter extends StatelessWidget {
-  const ProductPageCounter(
+class ProductCounter extends StatelessWidget {
+  const ProductCounter(
       {super.key,
       required this.amountOfProducts,
       required this.increment,
-      required this.decrement});
+      required this.decrement,
+      required this.color});
 
   final int amountOfProducts;
   final Function() increment;
   final Function() decrement;
+  final Color color;
 
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-            color: Colors.pink.shade100,
-            borderRadius: BorderRadius.circular(10)),
+            color: color, borderRadius: BorderRadius.circular(10)),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

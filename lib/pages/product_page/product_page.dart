@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
-import 'package:grocery_cubit/pages/cart_page.dart';
+import 'package:grocery_cubit/pages/cart_page/cart_page.dart';
+import 'package:grocery_cubit/pages/product_page/widgets/product_page_buttons.dart';
 import 'package:grocery_cubit/pages/style/app_typography.dart';
-import 'package:grocery_cubit/pages/tiles/product_page_counter.dart';
 import 'package:grocery_cubit/product.dart';
+import 'package:grocery_cubit/widgets/product_page_counter.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
@@ -45,7 +46,7 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                         Row(
                           children: [
-                            ProductPageCounter(
+                            ProductCounter(
                               amountOfProducts: amount,
                               increment: () => setState(
                                 () => amount++,
@@ -54,41 +55,22 @@ class _ProductPageState extends State<ProductPage> {
                                 amount--;
                                 amount = max(amount - 1, 0);
                               }),
+                              color: Colors.pink.shade100,
                             ),
                             const Spacer(),
                             Text('\$ $price'),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue.shade100),
-                            onPressed: () {
-                              context
-                                  .read<GroceryCubit>()
-                                  .addToCart(amount, widget.product);
-                            },
-                            child: const Padding(
-                              padding: EdgeInsets.all(14.0),
-                              child: Text('Add to Cart'),
-                            ),
-                          ),
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.pink.shade100),
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const CartPage(),
-                              )),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 20),
-                            child: Text('Go to Cart'),
-                          ),
-                        )
+                        ProductPageButtons(
+                            addToCart: () => context
+                                .read<GroceryCubit>()
+                                .addToCart(amount, widget.product),
+                            addText: 'Add to Cart',
+                            goToCart: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const CartPage())),
+                            goText: 'Go to Cart'),
                       ],
                     ),
                   );

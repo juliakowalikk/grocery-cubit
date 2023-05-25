@@ -6,10 +6,10 @@ import 'grocery_state.dart';
 class GroceryCubit extends Cubit<GroceryState> {
   GroceryCubit()
       : super(GroceryInitial([], [
-          Product(itemName: 'Orange', price: 2.10),
-          Product(itemName: 'Grape', price: 3.45),
-          Product(itemName: 'Banana', price: 1.15),
-          Product(itemName: 'Cherry', price: 4.40),
+          const Product(itemName: 'Orange', price: 2.10),
+          const Product(itemName: 'Grape', price: 3.45),
+          const Product(itemName: 'Banana', price: 1.15),
+          const Product(itemName: 'Cherry', price: 4.40),
         ], 0));
 
   final List<Product> cartProducts = [];
