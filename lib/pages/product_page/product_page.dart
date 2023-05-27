@@ -21,6 +21,7 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   int amount = 1;
+  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +41,27 @@ class _ProductPageState extends State<ProductPage> {
                   return Center(
                     child: Column(
                       children: [
-                        Text(
-                          widget.product.itemName,
-                          style: AppTypography.style1,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              widget.product.itemName,
+                              style: AppTypography.style1,
+                            ),
+                            IconButton(
+                                onPressed: () {
+                                  context.read<GroceryCubit>().addToFavourite(
+                                      Product(
+                                          itemName: widget.product.itemName,
+                                          price: widget.product.price));
+                                  setState(() {
+                                    isPressed = !isPressed;
+                                  });
+                                },
+                                icon: Icon(Icons.favorite,
+                                    color:
+                                        isPressed ? Colors.pink : Colors.grey)),
+                          ],
                         ),
                         Row(
                           children: [
@@ -88,6 +107,13 @@ class _ProductPageState extends State<ProductPage> {
           backgroundColor: Colors.blue.shade100,
           content: const Text(
               'The product has been successfully added to the cart!'),
+        ),
+      );
+    } else if (state is FavouriteGrocery) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.blue.shade100,
+          content: const Text('You added this product to favourite!'),
         ),
       );
     }
