@@ -15,30 +15,37 @@ class CartPage extends StatelessWidget {
         ),
         body: BlocBuilder<GroceryCubit, GroceryState>(
           builder: (context, state) {
-            return Column(
-              children: [
-                const CartPageListView(),
-                Text('Total price: \$ ${state.totalPrice.toStringAsFixed(2)}'),
-                Text(
-                    'You have ${state.cartProducts.length} items in your cart'),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue.shade100),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                    child: Text('Buy'),
-                  ),
+            return SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    const CartPageListView(),
+                    Text(
+                        'Total price: \$ ${state.totalPrice.toStringAsFixed(2)}'),
+                    Text(
+                        'You have ${state.cartProducts.length} items in your cart'),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue.shade100),
+                      child: const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                        child: Text('Buy'),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: InkWell(
+                        child: const Text('Delete all'),
+                        onTap: () =>
+                            context.read<GroceryCubit>().removeAllProducts(),
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: InkWell(
-                    child: const Text('Delete all'),
-                    onTap: () =>
-                        context.read<GroceryCubit>().removeAllProducts(),
-                  ),
-                )
-              ],
+              ),
             );
           },
         ),

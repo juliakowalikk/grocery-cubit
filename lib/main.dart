@@ -4,7 +4,7 @@ import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/pages/home_page/home_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (_) => GroceryCubit(),
-        child: MaterialApp(
+        child: const MaterialApp(
           home: HomePage(),
         ),
       );

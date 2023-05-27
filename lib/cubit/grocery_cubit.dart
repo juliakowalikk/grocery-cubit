@@ -61,7 +61,6 @@ class GroceryCubit extends Cubit<GroceryState> {
 
   void removeFromFavourite(int index) {
     favouriteProducts.removeAt(index);
-    print(favouriteProducts);
     emit(GroceryInitial(
         cartProducts, state.allProducts, favouriteProducts, totalPrice));
   }
