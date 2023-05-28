@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
 import 'package:grocery_cubit/pages/home_page/home_page.dart';
@@ -31,7 +32,8 @@ class _ProductPageState extends State<ProductPage> {
         listener: _listener,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Buy ${widget.product.itemName}'),
+            title:
+                Text('${Strings.of(context).buy} ${widget.product.itemName}'),
             backgroundColor: Colors.pink.shade100,
           ),
           body: Padding(
@@ -84,12 +86,12 @@ class _ProductPageState extends State<ProductPage> {
                             addToCart: () => context
                                 .read<GroceryCubit>()
                                 .addToCart(amount, widget.product),
-                            addText: 'Add to Cart',
+                            addText: Strings.of(context).addToCart,
                             goToCart: () => Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const HomePage())),
-                            goText: 'Go to Cart'),
+                            goText: Strings.of(context).goToCart),
                       ],
                     ),
                   );

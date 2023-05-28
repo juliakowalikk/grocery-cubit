@@ -1,0 +1,15 @@
+{
+  "buy": "Buy",
+  "goToCart": "Go to Cart",
+  "grocery": "Grocery",
+  "cart": "Cart",
+  "favourite": "Favourite",
+  "buyGroceries": "Buy your fresh groceries",
+  "favProducts": "Favourite products",
+  "noProducts": "You don't have favorite products yet",
+  "totalPrice": "Total price:{price}",
+  "yourCart":"Your Cart",
+  "delete": "Delete all",
+  "addToCart": "Add to Cart",
+  "productCount": "You have {count} products in your cart"
+}

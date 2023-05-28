@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
 import 'package:grocery_cubit/pages/cart_page/cart_page.dart';
@@ -30,12 +31,16 @@ class _HomePageState extends State<HomePage> {
             selectedItemColor: Colors.blue.shade100,
             currentIndex: currentIndex,
             onTap: _onItemTapped,
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Grocery'),
+            items: [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_cart), label: 'Cart'),
+                  icon: const Icon(Icons.home),
+                  label: Strings.of(context).grocery),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite), label: 'Favourite'),
+                  icon: const Icon(Icons.shopping_cart),
+                  label: Strings.of(context).cart),
+              BottomNavigationBarItem(
+                  icon: const Icon(Icons.favorite),
+                  label: Strings.of(context).favourite),
             ],
           ),
           body: bodies[currentIndex],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
 import 'package:grocery_cubit/pages/style/app_typography.dart';
@@ -27,11 +28,11 @@ class FavouritePage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Favourite products',
+                    Strings.of(context).favProducts,
                     style: AppTypography.style1,
                   ),
                   favouriteProducts.isEmpty
-                      ? const Text('You don\'t have favorite products yet')
+                      ? Text(Strings.of(context).noProducts)
                       : Expanded(
                           child: ListView.builder(
                               itemCount: state.favouriteProducts.length,

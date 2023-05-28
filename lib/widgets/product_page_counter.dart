@@ -16,7 +16,9 @@ class ProductCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.circular(10)),
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
 import 'package:grocery_cubit/pages/cart_page/widgets/cart_page_list_view.dart';
@@ -11,7 +12,7 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.pink.shade100,
-          title: const Text('Your Cart'),
+          title: Text(Strings.of(context).yourCart),
         ),
         body: BlocBuilder<GroceryCubit, GroceryState>(
           builder: (context, state) {
@@ -21,24 +22,24 @@ class CartPage extends StatelessWidget {
                 child: Column(
                   children: [
                     const CartPageListView(),
-                    Text(
-                        'Total price: \$ ${state.totalPrice.toStringAsFixed(2)}'),
-                    Text(
-                        'You have ${state.cartProducts.length} items in your cart'),
+                    Text(Strings.of(context)
+                        .totalPrice(state.totalPrice.toStringAsFixed(2))),
+                    Text(Strings.of(context)
+                        .productCount(state.cartProducts.length)),
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue.shade100),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                        child: Text('Buy'),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 15),
+                        child: Text(Strings.of(context).buy),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: InkWell(
-                        child: const Text('Delete all'),
+                        child: Text(Strings.of(context).delete),
                         onTap: () =>
                             context.read<GroceryCubit>().removeAllProducts(),
                       ),

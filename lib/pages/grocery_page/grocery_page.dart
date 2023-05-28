@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
 import 'package:grocery_cubit/pages/grocery_page/widgets/grocery_page_product_tile.dart';
@@ -22,7 +23,7 @@ class _HomePageState extends State<GroceryPage> {
             child: Column(
               children: [
                 Text(
-                  'Buy your fresh groceries',
+                  Strings.of(context).buyGroceries,
                   style: AppTypography.style1,
                 ),
                 Padding(
