@@ -53,8 +53,6 @@ class GroceryCubit extends Cubit<GroceryState> {
 
   void addToFavourite(Product product) {
     favouriteProducts.add(product);
-    emit(GroceryInitial(
-        cartProducts, state.allProducts, favouriteProducts, totalPrice));
     emit(FavouriteGrocery(
         cartProducts, state.allProducts, favouriteProducts, totalPrice));
   }

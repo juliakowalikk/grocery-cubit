@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
-import 'package:grocery_cubit/pages/cart_page/cart_page.dart';
+import 'package:grocery_cubit/pages/home_page/home_page.dart';
 import 'package:grocery_cubit/pages/product_page/widgets/product_page_buttons.dart';
 import 'package:grocery_cubit/pages/style/app_typography.dart';
 import 'package:grocery_cubit/product.dart';
@@ -85,10 +85,10 @@ class _ProductPageState extends State<ProductPage> {
                                 .read<GroceryCubit>()
                                 .addToCart(amount, widget.product),
                             addText: 'Add to Cart',
-                            goToCart: () => Navigator.push(
+                            goToCart: () => Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const CartPage())),
+                                    builder: (context) => const HomePage())),
                             goText: 'Go to Cart'),
                       ],
                     ),
