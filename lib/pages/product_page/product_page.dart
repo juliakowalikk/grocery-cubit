@@ -55,7 +55,8 @@ class _ProductPageState extends State<ProductPage> {
                                   context.read<GroceryCubit>().addToFavourite(
                                       Product(
                                           itemName: widget.product.itemName,
-                                          price: widget.product.price));
+                                          price: widget.product.price,
+                                          image: widget.product.image));
                                   setState(() {
                                     isPressed = !isPressed;
                                   });
