@@ -8,7 +8,7 @@
   "favProducts": "Favourite products",
   "noProducts": "You don't have favorite products yet",
   "totalPrice": "Total price:{price}",
-  "yourCart":"Your Cart",
+  "yourCart":"Cart Items",
   "delete": "Delete all",
   "addToCart": "Add to Cart",
   "productCount": "You have {count} products in your cart"

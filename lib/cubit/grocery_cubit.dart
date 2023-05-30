@@ -15,9 +15,7 @@ class GroceryCubit extends Cubit<GroceryState> {
           const Product(
               itemName: 'Kiwi', price: 1.15, image: 'lib/images/kiwi.jpg'),
           const Product(
-              itemName: 'Strawberry',
-              price: 4.40,
-              image: 'lib/images/strawberry.jpg'),
+              itemName: 'Peach', price: 4.40, image: 'lib/images/peach.jpg'),
         ], [], 0));
 
   final List<Product> cartProducts = [];

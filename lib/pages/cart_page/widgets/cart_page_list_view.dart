@@ -24,6 +24,7 @@ class CartPageListView extends StatelessWidget {
                 .length;
 
             return CartListTile(
+                image: cartProducts[index].image,
                 productName: cartProducts[index].itemName,
                 remove: () => context
                     .read<GroceryCubit>()
