@@ -12,33 +12,34 @@ class CartPageListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GroceryCubit, GroceryState>(
       builder: (context, state) {
-        final List<Product> cartProducts =
+        final List<Product> singleProducts =
             context.read<GroceryCubit>().singleProducts;
 
         return ListView.builder(
           shrinkWrap: true,
-          itemCount: cartProducts.length,
+          itemCount: singleProducts.length,
           itemBuilder: (context, index) {
-            final amount = cartProducts
-                .where((element) => element == cartProducts[index])
+            final amount = state.cartProducts
+                .where((element) => element == singleProducts[index])
                 .length;
 
-            return CartListTile(
-                image: cartProducts[index].image,
-                productName: cartProducts[index].itemName,
+            return GroceryListTile(
+                shouldShow: true,
+                image: singleProducts[index].image,
+                productName: singleProducts[index].itemName,
                 remove: () => context
                     .read<GroceryCubit>()
-                    .removeProduct(cartProducts[index]),
+                    .removeProduct(singleProducts[index]),
                 amount: state.cartProducts
-                    .where((element) => element == cartProducts[index])
+                    .where((element) => element == singleProducts[index])
                     .length,
                 add: () => context
                     .read<GroceryCubit>()
-                    .addToCart(amount, cartProducts[index]),
+                    .addToCart(amount, singleProducts[index]),
                 removeSpecificProduct: () => context
                     .read<GroceryCubit>()
-                    .removeSpecificProduct(amount, cartProducts[index]),
-                productPrice: cartProducts[index].price);
+                    .removeSpecificProduct(amount, singleProducts[index]),
+                productPrice: singleProducts[index].price);
           },
         );
       },

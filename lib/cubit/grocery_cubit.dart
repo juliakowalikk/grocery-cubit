@@ -30,8 +30,6 @@ class GroceryCubit extends Cubit<GroceryState> {
     totalPrice = totalPrice + (product.price * amount);
     emit(GroceryAddedToCart(
         cartProducts, state.allProducts, favouriteProducts, totalPrice));
-    emit(GroceryInitial(
-        cartProducts, state.allProducts, favouriteProducts, totalPrice));
   }
 
   void removeProduct(Product product) {
@@ -63,8 +61,8 @@ class GroceryCubit extends Cubit<GroceryState> {
         cartProducts, state.allProducts, favouriteProducts, totalPrice));
   }
 
-  void removeFromFavourite(int index) {
-    favouriteProducts.removeAt(index);
+  void removeFromFavourite(Product product) {
+    favouriteProducts.remove(product);
     emit(GroceryInitial(
         cartProducts, state.allProducts, favouriteProducts, totalPrice));
   }

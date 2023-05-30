@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
+import 'package:grocery_cubit/pages/cart_page/widgets/cart_page_list_tile.dart';
 import 'package:grocery_cubit/pages/style/app_typography.dart';
 
 import '../../product.dart';
@@ -14,45 +15,53 @@ class FavouritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Product> favouriteProducts =
-        context.read<GroceryCubit>().singleFavProducts;
     return BlocBuilder<GroceryCubit, GroceryState>(
       builder: (context, state) {
+        final List<Product> favouriteProducts =
+            context.read<GroceryCubit>().singleFavProducts;
         return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.pink.shade100,
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
+          backgroundColor: Colors.white,
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     Strings.of(context).favProducts,
                     style: AppTypography.style1,
                   ),
                   favouriteProducts.isEmpty
-                      ? Text(Strings.of(context).noProducts)
+                      ? Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset('lib/images/empty.jpg'),
+                            ),
+                            Text(Strings.of(context).noProducts),
+                          ],
+                        )
                       : Expanded(
                           child: ListView.builder(
-                              itemCount: state.favouriteProducts.length,
+                              itemCount: favouriteProducts.length,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
-                                return ListTile(
-                                  title:
-                                      Text(favouriteProducts[index].itemName),
-                                  subtitle: Text(
-                                      '\$ ${favouriteProducts[index].price.toStringAsFixed(2)}'),
-                                  trailing: IconButton(
-                                      onPressed: () {
-                                        context
-                                            .read<GroceryCubit>()
-                                            .removeFromFavourite(index);
-                                      },
-                                      icon: const Icon(Icons.remove)),
-                                );
+                                return GroceryListTile(
+                                    image: favouriteProducts[index].image,
+                                    productName:
+                                        favouriteProducts[index].itemName,
+                                    remove: () {},
+                                    amount: 0,
+                                    add: () {},
+                                    removeSpecificProduct: () => context
+                                        .read<GroceryCubit>()
+                                        .removeFromFavourite(
+                                            favouriteProducts[index]),
+                                    productPrice:
+                                        favouriteProducts[index].price,
+                                    shouldShow: false);
                               }),
-                        )
+                        ),
                 ],
               ),
             ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_cubit/widgets/product_page_counter.dart';
 
-class CartListTile extends StatelessWidget {
-  const CartListTile(
+class GroceryListTile extends StatelessWidget {
+  const GroceryListTile(
       {super.key,
       required this.image,
       required this.productName,
@@ -10,7 +10,8 @@ class CartListTile extends StatelessWidget {
       required this.amount,
       required this.add,
       required this.removeSpecificProduct,
-      required this.productPrice});
+      required this.productPrice,
+      required this.shouldShow});
 
   final String image;
   final String productName;
@@ -19,6 +20,7 @@ class CartListTile extends StatelessWidget {
   final Function() add;
   final Function() removeSpecificProduct;
   final double productPrice;
+  final bool shouldShow;
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -46,11 +48,12 @@ class CartListTile extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    ProductCounter(
-                        amountOfProducts: amount,
-                        increment: add,
-                        decrement: remove,
-                        color: Colors.white),
+                    if (shouldShow)
+                      ProductCounter(
+                          amountOfProducts: amount,
+                          increment: add,
+                          decrement: remove,
+                          color: Colors.white),
                     IconButton(
                       onPressed: () => removeSpecificProduct(),
                       icon: const Icon(Icons.delete),
