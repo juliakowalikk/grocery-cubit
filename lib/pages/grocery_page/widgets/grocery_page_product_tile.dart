@@ -12,9 +12,9 @@ class ProductTile extends StatelessWidget {
     String price = product.price.toStringAsFixed(2);
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.grey.shade300)),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Image.asset(
           product.image,
@@ -22,7 +22,7 @@ class ProductTile extends StatelessWidget {
         ),
         Text(
           product.itemName,
-          style: AppTypography.style1,
+          style: AppTypography.style2,
         ),
         Padding(
           padding: const EdgeInsets.all(16.0),
@@ -31,7 +31,7 @@ class ProductTile extends StatelessWidget {
             const Spacer(),
             Container(
               decoration: BoxDecoration(
-                  color: Colors.pink.shade100,
+                  color: const Color(0xFFCBE8D6),
                   borderRadius: BorderRadius.circular(10)),
               child: IconButton(
                 onPressed: () => Navigator.push(
@@ -45,7 +45,7 @@ class ProductTile extends StatelessWidget {
                             ))),
                 icon: const Icon(
                   Icons.shopping_cart,
-                  color: Colors.white,
+                  color: Color(0xFF40C77C),
                 ),
               ),
             ),

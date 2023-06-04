@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_cubit/widgets/product_page_counter.dart';
+import 'package:grocery_cubit/pages/style/app_typography.dart';
+import 'package:grocery_cubit/widgets/product_counter.dart';
 
 class GroceryListTile extends StatelessWidget {
   const GroceryListTile(
@@ -24,12 +25,14 @@ class GroceryListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(6.0),
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.grey.shade300)),
           child: Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
                 Row(
@@ -43,7 +46,10 @@ class GroceryListTile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(productName),
+                        Text(
+                          productName,
+                          style: AppTypography.style2,
+                        ),
                         Text('\$ ${productPrice.toStringAsFixed(2)}'),
                       ],
                     ),
@@ -66,3 +72,5 @@ class GroceryListTile extends StatelessWidget {
         ),
       );
 }
+//Color(0xFF40C77C)
+// Color(0xFFCBE8D6)

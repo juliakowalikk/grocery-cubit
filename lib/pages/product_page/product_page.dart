@@ -5,11 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
-import 'package:grocery_cubit/pages/home_page/home_page.dart';
-import 'package:grocery_cubit/pages/product_page/widgets/product_page_buttons.dart';
 import 'package:grocery_cubit/pages/style/app_typography.dart';
 import 'package:grocery_cubit/product.dart';
-import 'package:grocery_cubit/widgets/product_page_counter.dart';
+import 'package:grocery_cubit/widgets/buttons.dart';
+import 'package:grocery_cubit/widgets/product_counter.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
@@ -31,18 +30,33 @@ class _ProductPageState extends State<ProductPage> {
       child: BlocListener<GroceryCubit, GroceryState>(
         listener: _listener,
         child: Scaffold(
-          appBar: AppBar(
-            title:
-                Text('${Strings.of(context).buy} ${widget.product.itemName}'),
-            backgroundColor: Colors.pink.shade100,
-          ),
-          body: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: BlocBuilder<GroceryCubit, GroceryState>(
-                builder: (context, state) {
-                  return Center(
+          backgroundColor: Colors.white,
+          body: BlocBuilder<GroceryCubit, GroceryState>(
+            builder: (context, state) {
+              return SafeArea(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Row(
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_back_ios,
+                                  size: 20,
+                                )),
+                            Text(
+                              Strings.of(context).detailItem,
+                              style: AppTypography.style4,
+                            ),
+                          ],
+                        ),
+                        Image.asset(widget.product.image),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -53,10 +67,11 @@ class _ProductPageState extends State<ProductPage> {
                             IconButton(
                                 onPressed: () {
                                   context.read<GroceryCubit>().addToFavourite(
-                                      Product(
-                                          itemName: widget.product.itemName,
-                                          price: widget.product.price,
-                                          image: widget.product.image));
+                                        Product(
+                                            itemName: widget.product.itemName,
+                                            price: widget.product.price,
+                                            image: widget.product.image),
+                                      );
                                   setState(() {
                                     isPressed = !isPressed;
                                   });
@@ -77,27 +92,26 @@ class _ProductPageState extends State<ProductPage> {
                                 amount--;
                                 amount = max(amount - 1, 0);
                               }),
-                              color: Colors.pink.shade100,
+                              color: const Color(0xFFCBE8D6),
                             ),
                             const Spacer(),
                             Text('\$ $price'),
                           ],
                         ),
-                        ProductPageButtons(
-                            addToCart: () => context
-                                .read<GroceryCubit>()
-                                .addToCart(amount, widget.product),
-                            addText: Strings.of(context).addToCart,
-                            goToCart: () => Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const HomePage())),
-                            goText: Strings.of(context).goToCart),
+                        const Spacer(),
+                        Button(
+                          title: Strings.of(context).addToCart,
+                          onPressed: () => context
+                              .read<GroceryCubit>()
+                              .addProduct(amount, widget.product),
+                        )
                       ],
                     ),
-                  );
-                },
-              )),
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

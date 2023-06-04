@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       builder: (context, state) {
         return Scaffold(
           bottomNavigationBar: BottomNavigationBar(
-            selectedItemColor: Colors.blue.shade100,
+            selectedItemColor: const Color(0xFF40C77C),
             currentIndex: currentIndex,
             onTap: _onItemTapped,
             items: [

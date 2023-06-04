@@ -21,27 +21,25 @@ class _HomePageState extends State<GroceryPage> {
         builder: (context, state) {
           return SafeArea(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  Strings.of(context).buyGroceries,
-                  style: AppTypography.style1,
-                ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: state.allProducts.length,
-                    itemBuilder: (context, index) => Container(
-                        margin: const EdgeInsets.symmetric(vertical: 10),
-                        width: double.infinity,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ProductTile(product: state.allProducts[index]),
-                        )),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2),
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    Strings.of(context).buyGroceries,
+                    style: AppTypography.style4,
                   ),
+                ),
+                GridView.builder(
+                  padding: const EdgeInsets.all(8),
+                  shrinkWrap: true,
+                  itemCount: state.allProducts.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ProductTile(product: state.allProducts[index]),
+                  ),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
                 ),
               ],
             ),

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
-import 'package:grocery_cubit/pages/cart_page/widgets/cart_page_list_tile.dart';
 import 'package:grocery_cubit/pages/style/app_typography.dart';
+import 'package:grocery_cubit/widgets/grocery_list_tile.dart';
 
 import '../../product.dart';
 
@@ -21,28 +21,34 @@ class FavouritePage extends StatelessWidget {
             context.read<GroceryCubit>().singleFavProducts;
         return Scaffold(
           backgroundColor: Colors.white,
-          body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     Strings.of(context).favProducts,
-                    style: AppTypography.style1,
+                    style: AppTypography.style4,
                   ),
                   favouriteProducts.isEmpty
-                      ? Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset('lib/images/empty.jpg'),
+                      ? Expanded(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  Strings.of(context).noProducts,
+                                  style: AppTypography.style2,
+                                ),
+                                Text(Strings.of(context).addFav)
+                              ],
                             ),
-                            Text(Strings.of(context).noProducts),
-                          ],
+                          ),
                         )
                       : Expanded(
                           child: ListView.builder(
+                              padding: const EdgeInsets.all(10),
                               itemCount: favouriteProducts.length,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {

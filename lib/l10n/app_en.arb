@@ -1,5 +1,5 @@
 {
-  "buy": "Buy",
+  "buy": "Payment",
   "goToCart": "Go to Cart",
   "grocery": "Grocery",
   "cart": "Cart",
@@ -7,9 +7,13 @@
   "buyGroceries": "Buy your fresh groceries",
   "favProducts": "Favourite products",
   "noProducts": "You don't have favorite products yet",
-  "totalPrice": "Total price:{price}",
+  "totalPrice": "Total price: ${price}",
   "yourCart":"Cart Items",
   "delete": "Delete all",
   "addToCart": "Add to Cart",
-  "productCount": "You have {count} products in your cart"
+  "productCount": "You have {count} products in your cart",
+  "detailItem": "Detail Item",
+  "emptyCart": "Oops! Your cart is empty",
+  "emptySubtitle": "Let's go buy something",
+  "addFav": "Add something on the product page"
 }

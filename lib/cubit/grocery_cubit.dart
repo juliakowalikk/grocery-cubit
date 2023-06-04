@@ -9,9 +9,7 @@ class GroceryCubit extends Cubit<GroceryState> {
           const Product(
               itemName: 'Apple', price: 2.10, image: 'lib/images/apple.jpg'),
           const Product(
-              itemName: 'Raspberry',
-              price: 3.45,
-              image: 'lib/images/raspberry.jpg'),
+              itemName: 'Cherry', price: 3.45, image: 'lib/images/cherry.jpg'),
           const Product(
               itemName: 'Kiwi', price: 1.15, image: 'lib/images/kiwi.jpg'),
           const Product(
@@ -25,7 +23,7 @@ class GroceryCubit extends Cubit<GroceryState> {
 
   double totalPrice = 0;
 
-  void addToCart(int amount, Product product) {
+  void addProduct(int amount, Product product) {
     cartProducts.addAll(List.generate(amount, (index) => product));
     totalPrice = totalPrice + (product.price * amount);
     emit(GroceryAddedToCart(
@@ -47,6 +45,7 @@ class GroceryCubit extends Cubit<GroceryState> {
   }
 
   void removeSpecificProduct(int amount, Product product) {
+    print(amount);
     cartProducts.removeWhere((Product item) => product == item);
     totalPrice = totalPrice - (product.price * amount);
     emit(GroceryInitial(
