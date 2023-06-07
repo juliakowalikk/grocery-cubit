@@ -15,5 +15,6 @@
   "detailItem": "Detail Item",
   "emptyCart": "Oops! Your cart is empty",
   "emptySubtitle": "Let's go buy something",
-  "addFav": "Add something on the product page"
+  "addFav": "Add something on the product page",
+  "productPrice": " $ {sum}"
 }

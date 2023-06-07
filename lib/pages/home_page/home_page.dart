@@ -6,6 +6,7 @@ import 'package:grocery_cubit/cubit/grocery_state.dart';
 import 'package:grocery_cubit/pages/cart_page/cart_page.dart';
 import 'package:grocery_cubit/pages/favourite_page/favourite_page.dart';
 import 'package:grocery_cubit/pages/grocery_page/grocery_page.dart';
+import 'package:grocery_cubit/style/app_colors.dart';
 
 List<Widget> bodies = const [
   GroceryPage(),
@@ -22,13 +23,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
+
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<GroceryCubit, GroceryState>(
-      builder: (context, state) {
-        return Scaffold(
+  Widget build(BuildContext context) => BlocBuilder<GroceryCubit, GroceryState>(
+        builder: (context, state) => Scaffold(
           bottomNavigationBar: BottomNavigationBar(
-            selectedItemColor: const Color(0xFF40C77C),
+            selectedItemColor: green,
             currentIndex: currentIndex,
             onTap: _onItemTapped,
             items: [
@@ -44,14 +44,8 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           body: bodies[currentIndex],
-        );
-      },
-    );
-  }
+        ),
+      );
 
-  void _onItemTapped(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
+  void _onItemTapped(int index) => setState(() => currentIndex = index);
 }

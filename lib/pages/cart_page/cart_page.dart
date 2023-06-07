@@ -4,21 +4,22 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:grocery_cubit/cubit/grocery_cubit.dart';
 import 'package:grocery_cubit/cubit/grocery_state.dart';
 import 'package:grocery_cubit/pages/cart_page/widgets/cart_page_list_view.dart';
-import 'package:grocery_cubit/pages/style/app_typography.dart';
-import 'package:grocery_cubit/widgets/buttons.dart';
+import 'package:grocery_cubit/style/app_colors.dart';
+import 'package:grocery_cubit/style/app_typography.dart';
+import 'package:grocery_cubit/style/dimens.dart';
+import 'package:grocery_cubit/widgets/button.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: backgroundColor,
         body: BlocBuilder<GroceryCubit, GroceryState>(
-          builder: (context, state) {
-            return SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
+          builder: (context, state) => SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(Dimens.xl),
+              child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -28,16 +29,15 @@ class CartPage extends StatelessWidget {
                     const CartPageListView(),
                     state.cartProducts.isEmpty
                         ? Center(
-                            child: Column(
-                            children: [
+                            child: Column(children: [
                               Image.asset('lib/images/empty_cart.png'),
                               Text(
                                 Strings.of(context).emptyCart,
                                 style: AppTypography.style2,
                               ),
                               Text(Strings.of(context).emptySubtitle)
-                            ],
-                          ))
+                            ]),
+                          )
                         : Expanded(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -52,9 +52,10 @@ class CartPage extends StatelessWidget {
                                 Button(
                                   title: Strings.of(context).buy,
                                   onPressed: () {},
+                                  // fake buy button
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(16.0),
+                                  padding: const EdgeInsets.all(Dimens.xl),
                                   child: InkWell(
                                     child: Text(
                                       Strings.of(context).delete,
@@ -68,11 +69,9 @@ class CartPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                  ],
-                ),
-              ),
-            );
-          },
+                  ]),
+            ),
+          ),
         ),
       );
 }

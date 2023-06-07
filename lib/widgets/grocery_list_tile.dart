@@ -1,38 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_cubit/pages/style/app_typography.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:grocery_cubit/style/app_colors.dart';
+import 'package:grocery_cubit/style/app_typography.dart';
+import 'package:grocery_cubit/style/dimens.dart';
 import 'package:grocery_cubit/widgets/product_counter.dart';
 
 class GroceryListTile extends StatelessWidget {
-  const GroceryListTile(
-      {super.key,
-      required this.image,
-      required this.productName,
-      required this.remove,
-      required this.amount,
-      required this.add,
-      required this.removeSpecificProduct,
-      required this.productPrice,
-      required this.shouldShow});
-
   final String image;
   final String productName;
-  final Function() remove;
+  final Function? onRemove;
   final int amount;
-  final Function() add;
-  final Function() removeSpecificProduct;
+  final Function? onAdd;
+  final Function onRemoveSpecificProduct;
   final double productPrice;
-  final bool shouldShow;
+
+  const GroceryListTile({
+    super.key,
+    required this.image,
+    required this.productName,
+    this.onRemove,
+    this.amount = 0,
+    this.onAdd,
+    required this.onRemoveSpecificProduct,
+    required this.productPrice,
+  });
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(Dimens.xm),
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.grey.shade300)),
+              color: backgroundColor,
+              borderRadius: const BorderRadius.all(Radius.circular(Dimens.m)),
+              border: Border.all(color: grey)),
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(Dimens.m),
             child: Column(
               children: [
                 Row(
@@ -50,18 +52,21 @@ class GroceryListTile extends StatelessWidget {
                           productName,
                           style: AppTypography.style2,
                         ),
-                        Text('\$ ${productPrice.toStringAsFixed(2)}'),
+                        Text(Strings.of(context).productPrice(
+                          productPrice.toStringAsFixed(2),
+                        )),
                       ],
                     ),
                     const Spacer(),
-                    if (shouldShow)
+                    if (onAdd != null && onRemove != null)
                       ProductCounter(
-                          amountOfProducts: amount,
-                          increment: add,
-                          decrement: remove,
-                          color: Colors.white),
+                        amount: amount,
+                        onIncrement: onAdd!,
+                        onDecrement: onRemove!,
+                        color: Colors.white,
+                      ),
                     IconButton(
-                      onPressed: () => removeSpecificProduct(),
+                      onPressed: () => onRemoveSpecificProduct(),
                       icon: const Icon(Icons.delete),
                     ),
                   ],
@@ -72,5 +77,3 @@ class GroceryListTile extends StatelessWidget {
         ),
       );
 }
-//Color(0xFF40C77C)
-// Color(0xFFCBE8D6)

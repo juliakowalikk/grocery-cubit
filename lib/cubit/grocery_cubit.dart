@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery_cubit/product.dart';
 
-import '../product.dart';
 import 'grocery_state.dart';
 
 class GroceryCubit extends Cubit<GroceryState> {
@@ -27,29 +27,44 @@ class GroceryCubit extends Cubit<GroceryState> {
     cartProducts.addAll(List.generate(amount, (index) => product));
     totalPrice = totalPrice + (product.price * amount);
     emit(GroceryAddedToCart(
-        cartProducts, state.allProducts, favouriteProducts, totalPrice));
+      cartProducts,
+      state.allProducts,
+      favouriteProducts,
+      totalPrice,
+    ));
   }
 
   void removeProduct(Product product) {
     cartProducts.remove(product);
     totalPrice = totalPrice - product.price;
     emit(GroceryInitial(
-        cartProducts, state.allProducts, favouriteProducts, totalPrice));
+      cartProducts,
+      state.allProducts,
+      favouriteProducts,
+      totalPrice,
+    ));
   }
 
   void removeAllProducts() {
     cartProducts.clear();
     totalPrice = 0;
     emit(GroceryInitial(
-        cartProducts, state.allProducts, favouriteProducts, totalPrice));
+      cartProducts,
+      state.allProducts,
+      favouriteProducts,
+      totalPrice,
+    ));
   }
 
   void removeSpecificProduct(int amount, Product product) {
-    print(amount);
     cartProducts.removeWhere((Product item) => product == item);
     totalPrice = totalPrice - (product.price * amount);
     emit(GroceryInitial(
-        cartProducts, state.allProducts, favouriteProducts, totalPrice));
+      cartProducts,
+      state.allProducts,
+      favouriteProducts,
+      totalPrice,
+    ));
   }
 
   List<Product> get singleFavProducts => favouriteProducts.toSet().toList();
@@ -57,12 +72,20 @@ class GroceryCubit extends Cubit<GroceryState> {
   void addToFavourite(Product product) {
     favouriteProducts.add(product);
     emit(FavouriteGrocery(
-        cartProducts, state.allProducts, favouriteProducts, totalPrice));
+      cartProducts,
+      state.allProducts,
+      favouriteProducts,
+      totalPrice,
+    ));
   }
 
   void removeFromFavourite(Product product) {
     favouriteProducts.remove(product);
     emit(GroceryInitial(
-        cartProducts, state.allProducts, favouriteProducts, totalPrice));
+      cartProducts,
+      state.allProducts,
+      favouriteProducts,
+      totalPrice,
+    ));
   }
 }
