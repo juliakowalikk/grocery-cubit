@@ -1,10 +1,8 @@
-# grocery_cubit
+# Grocery Market
 
-A new Flutter project.
+In Grocery Market you can browse the products and then add them to the basket that you can manage.
+You can create a list of your favorite products and edit it at any time
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
